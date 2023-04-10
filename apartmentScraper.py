@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import datetime
 
+urlToScrape = "https://www.apartments.com/apartments/under-1900-pet-friendly-cat/air-conditioning-washer-dryer-dishwasher-walk-in-closets/?sk=08c73016dc636d78d762a89107215994&bb=g34xux3r6H0p4qwx-B&sfmin=600&so=2&mid=20230630"
 priceMaximum = 1800
 squareFootageMinimum = 700
 
@@ -42,7 +43,6 @@ def extract_property_name(soup):
     else:
         return "Not found"
 
-
 def scrape_url(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
@@ -50,7 +50,6 @@ def scrape_url(url):
         "Accept-Encoding": "gzip, deflate, br",
         "Connection": "keep-alive"
     }
-
 
     try:
         response = requests.get(url, headers=headers, timeout=60)
@@ -103,11 +102,9 @@ def extract_apartment_urls(url):
 
     return url_array
 
-
-
 ############################ MAIN #################################
 
-url = "https://www.apartments.com/apartments/under-1900-pet-friendly-cat/air-conditioning-washer-dryer-dishwasher-walk-in-closets/?sk=08c73016dc636d78d762a89107215994&bb=g34xux3r6H0p4qwx-B&sfmin=600&so=2&mid=20230630"
+url = urlToScrape
 url_array = extract_apartment_urls(url)
 
 all_unit_data = []
